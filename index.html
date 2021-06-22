@@ -1,0 +1,47 @@
+---
+layout: default
+title: Cold War Timeline
+creator: Jacob Walchuk
+date: June 21st, 2021
+---
+
+<p class="BodyText">
+The following is a timeline of the Cold War, which was invaluable in helping me review for the final exam. The colour of each entry indicates the level of tension at the specific moment the event was conducted (bright orange is the most tense.) Each entry has a <i>key concept</i> which contains <i>key events</i>. These key events also introduce new vocabulary and key terms. There is a &Delta;T value, which shows the change in tension that happened at that specific event. Finally, there is a T value, which puts the amount of tension at that point into a relatively arbitrary number. There is also a <a href=tgraph.html>tension graph</a> that shows the tension data in graph form.
+</p>
+{% for entry in site.data.output %}
+  <div class="eventBox" style="background-color:rgb({{entry.colR}}, 175, {{entry.colB}});">
+    <h1 class="SubSection">Key Concept: {{entry.name}}</h1>
+    {% if entry.keyEvents != "" %}
+    <p class="BodyText"><b>Key Events:</b> {{entry.keyEvents}}</p>
+    {% endif %}
+    <table class="BodyText">
+      <tr>
+        <th>Date</th>
+    {% if entry.keyPeople != "" %}
+        <th>Key People</th>
+    {% endif %}
+        <th>&Delta;T</th>
+        <th>T</th>
+      </tr>
+      <tr>
+        <td>{{entry.coolDate}}</td>
+    {% if entry.keyPeople != "" %}
+        <td>
+          <ul>
+
+          {% for person in entry.keyPeople %}
+            <li>{{person}}</li>
+          {% endfor %}
+          </ul>
+        </td>
+    {% endif %}
+        <td>
+          {{entry.delta}}
+        </td>
+        <td>
+          {{entry.deltaSum}}
+        </td>
+      </tr>
+    </table>
+  </div>
+{% endfor %}
